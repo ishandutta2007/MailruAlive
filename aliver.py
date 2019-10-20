@@ -2,6 +2,7 @@ from mailrualive import MailruAlive
 from pathlib import Path
 import configparser
 import pprint as pp
+import os
 
 CWD = "/".join(str(Path(__file__).resolve()).split("/")[:6])
 config = configparser.ConfigParser()
@@ -15,95 +16,98 @@ done = [
     "CourtAlleva",
     "OgeenSavar",
     "RequaModesto1993",
+    "ShereenCho",
+    "AprilMeia",
+    "DilonBlight",
+    "BorzaAidyn",
+    "LysaLorge",
+    "ElaiGamm",
+    "JehuFurgeson",
+    "Wgon2ck1wn",
+    "KessonLyriq99",
+    "FairfaxJeilin92",
+    "DohaBow89",
+    "PequenoAslan1993",
+    "IgorGenao97",
+    "BellowJaquelyn91",
+    "ZekiAlbe",
+    "LaurenoLadon",
+    "BurdzelAshvin1995",
+    "ArshiLevien",
+    "MaiaBurl98",
+    "CoilLai97",
+    "FurbishUjwal",
+    "PethKhalisa",
+    "AinslyMalmquist99",
+    "MocarskiTatiana89",
+    "MiroJiro",
+    "ElaiaMoyerman1999",
+    "UzzellAc",
+    "HooGatlin",
+    "VarsDiani",
+    "TillyJhiya",
+    "DeclercqTorey1991",
+    "SoulLoh",
+    "LacsonKanav01",
+    "MehalicHazel",
 ]
 
 usernames = [
     "AamirCoodey",
-    "ShereenCho",
     "DacquelSonny96",
     "RussonQuay",
     "FroioAvalia",
     "StreetonLeba",
     "KayDonato",
-    "AprilMeia",
     "LyriqGasco1998",
     "SlikerQi",
     "EagenSamraj95",
     "CiscoSelvy",
-    "DilonBlight",
     "ErissJex",
     "OverAilie",
     "NouriManu",
     "KiazerLopus00",
     "OldNakoa93",
-    "PequenoAslan1993",
-    "IgorGenao97",
-    "BellowJaquelyn91",
     "Xnscphuzr",
     "JayonWark",
-    "BorzaAidyn",
     "VinSavo",
-    "LysaLorge",
-    "ZekiAlbe",
     "MaebhKolwyck",
     "KellumEgwuohua92",
-    "LaurenoLadon",
-    "ElaiGamm",
     "TiniusRoyal",
-    "BurdzelAshvin1995",
-    "ArshiLevien",
-    "JehuFurgeson",
     "PaxJuras99",
     "Conajhowi",
-    "MaiaBurl98",
     "RognessBaran",
-    "CoilLai97",
     "D8autrjleajmlbfrdct3w9owcjkwdj",
     "AzaGooden94",
-    "FurbishUjwal",
-    "Wgon2ck1wn",
     "AjZinter2000",
     "MagounEmanuela",
     "TvedtSalif",
-    "PethKhalisa",
-    "SoulLoh",
-    "AinslyMalmquist99",
-    "KessonLyriq99",
     "BaguKaya",
     "WesBosque91",
     "UcDannon",
     "RiahWack",
     "ChazzVlk",
     "OdenZiak",
-    "LacsonKanav01",
     "KonnieSter",
     "KairyZeliff1996",
-    "MocarskiTatiana89",
     "SipleBroc93",
-    "MiroJiro",
     "HayElda",
     "KyaMenjivar",
-    "ElaiaMoyerman1999",
     "AmiaForte",
     "YoqueletTeran2000",
     "NelonMarqell92",
-    "MehalicHazel",
     "ZadeNewby95",
     "SloaneLouie",
     "SakonJordi",
-    "FairfaxJeilin92",
     "SarahbethBadey1996",
     "AbbyNutzmann2000",
-    "UzzellAc",
     "AdainQasba1994",
     "MauryaEnce",
     "AithenXyong90",
     "JquanSwaringen93",
-    "HooGatlin",
     "TakachYuvi00",
     "PensoLogic95",
     "YoannaPunch",
-    "VarsDiani",
     "Beuj0kjbdkviwxjfrvfu4gg6",
     "CailumRyherd2000",
     "PezzanoAlaurah96",
@@ -111,13 +115,11 @@ usernames = [
     "MeyaGelzer",
     "SpeeceArial2000",
     "StinesKaton",
-    "TillyJhiya",
     "EaryEvans",
-    "DeclercqTorey1991",
-    "DohaBow89",
     "CortwrightRowdy",
     "LazuskyZaren1991",
 ]
+
 future = [
     "HasonLader",
     "BrokerFe",
@@ -1016,25 +1018,29 @@ future = [
 ]
 
 usernames = [x for x in usernames if x not in done]
-with open(CWD + "/done.txt", "r") as file:
-    read_lines = file.readlines()
-dynamic_dones = [line.replace("\n", "") for line in read_lines]
-dynamic_dones = list(set(dynamic_dones))
-pp.pprint(dynamic_dones)
-usernames = [x for x in usernames if x not in dynamic_dones]
+if os.path.exists(CWD + "/done.txt"):
+    with open(CWD + "/done.txt", "r") as file:
+        read_lines = file.readlines()
+    dynamic_dones = [line.replace("\n", "") for line in read_lines]
+    dynamic_dones = list(set(dynamic_dones))
+    usernames = [x for x in usernames if x not in dynamic_dones]
 
 successful = []
 failed = []
+with open(CWD + "/done.txt", "a+") as file:
+    file.write("\n")
 for username in usernames:
     try:
         mailru_password = config.get("configuration", username + "_password")
         session = MailruAlive(mailru=username, mailru_password=mailru_password)
         session.check_mail()
         successful.append(username)
-        with open(CWD + "/done.txt", "a") as file:
-            file.write(username)
+        with open(CWD + "/done.txt", "a+") as file:
+            file.write(username + "\n")
     except Exception as e:
         failed.append(username)
+with open(CWD + "/done.txt", "a+") as file:
+    file.write("\n")
 
 print("successful:")
 pp.pprint(successful)

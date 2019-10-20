@@ -159,6 +159,7 @@ class MailruAlive:
                 self.logger.info("Clicked Продолжить(Confirm)")
             except Exception as e:
                 traceback.print_exc()
+                raise e
 
         if pencil_btn:
             try:
@@ -207,6 +208,7 @@ class MailruAlive:
                 self.logger.info("Clicked Отправить(Send) alert")
             except Exception as e:
                 traceback.print_exc()
+                raise e
 
         sleep(5)
 
