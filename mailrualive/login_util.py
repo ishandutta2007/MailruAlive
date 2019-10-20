@@ -30,7 +30,7 @@ from selenium.common.exceptions import MoveTargetOutOfBoundsException
 def login_browser(mailru, mailru_password, logfolder, browser, logger):
     try:
         browser.get("https://mail.ru")
-        sleep(10)
+        sleep(2)
 
         input_mailru = browser.find_element_by_xpath("//input[@id='mailbox:login']")
         (
@@ -46,7 +46,7 @@ def login_browser(mailru, mailru_password, logfolder, browser, logger):
         submit_mailru = browser.find_element_by_xpath("//input[@type='submit']")
         (ActionChains(browser).move_to_element(submit_mailru).click().perform())
         logger.info("Submitted Email")
-        sleep(5)
+        sleep(3)
 
         input_pass = browser.find_element_by_xpath("//input[@id='mailbox:password']")
         (
@@ -63,7 +63,7 @@ def login_browser(mailru, mailru_password, logfolder, browser, logger):
         (ActionChains(browser).move_to_element(submit_pass).click().perform())
         logger.info("Submitted Pass")
 
-        sleep(5)
+        sleep(3)
 
     except Exception as e:
         logger.error(e)

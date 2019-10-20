@@ -1015,6 +1015,14 @@ future = [
     "BhuvanBjorkquist",
 ]
 
+usernames = [x for x in usernames if x not in done]
+with open(CWD + "/done.txt", "r") as file:
+    read_lines = file.readlines()
+dynamic_dones = [line.replace("\n", "") for line in read_lines]
+dynamic_dones = list(set(dynamic_dones))
+pp.pprint(dynamic_dones)
+usernames = [x for x in usernames if x not in dynamic_dones]
+
 successful = []
 failed = []
 for username in usernames:
@@ -1023,6 +1031,8 @@ for username in usernames:
         session = MailruAlive(mailru=username, mailru_password=mailru_password)
         session.check_mail()
         successful.append(username)
+        with open(CWD + "/done.txt", "a") as file:
+            file.write(username)
     except Exception as e:
         failed.append(username)
 
