@@ -87,6 +87,7 @@ class MailruAlive:
             raise SocialPyError(err_msg)
 
     def send_a_mail(self):
+        sleep(5)
         if "e.mail.ru/messages/inbox" not in self.browser.current_url:
             self.logger.info(
                 "Might have encountered captcha, solve manually and press enter on terminal"
@@ -114,9 +115,6 @@ class MailruAlive:
 
         if compose_btn:
             try:
-                # compose_btn = self.browser.find_element_by_xpath(
-                #     "//*[contains(text(), 'Написать письмо')]"
-                # )
                 ActionChains(self.browser).move_to_element(
                     compose_btn
                 ).click().perform()
@@ -164,9 +162,6 @@ class MailruAlive:
         if pencil_btn:
             try:
                 self.logger.info("письмо is not there, lets try pencil icon")
-                # pencil_btn = self.browser.find_element_by_xpath(
-                #     "//*[@id='app-canvas']/div/div[1]/div[1]/div/div[2]/div[1]/div/div/div[1]/div[1]/div/span"
-                # )
                 ActionChains(self.browser).move_to_element(pencil_btn).click().perform()
                 self.logger.info("Clicked pencil icon")
                 sleep(5)

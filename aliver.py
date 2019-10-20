@@ -52,7 +52,7 @@ done = [
     "MehalicHazel",
 ]
 
-usernames = [
+captchawalas = [
     "AamirCoodey",
     "DacquelSonny96",
     "RussonQuay",
@@ -77,6 +77,17 @@ usernames = [
     "PaxJuras99",
     "Conajhowi",
     "RognessBaran",
+    "HasonLader",
+    "BrokerFe",
+    "IlseYanez",
+    "RabenoldLuz1996",
+    "DerayMcglew98",
+    "McqueenLachlan94",
+    "RaeginGuttormson",
+]
+
+usernames = [
+    "MacolaTanishq01",
     "D8autrjleajmlbfrdct3w9owcjkwdj",
     "AzaGooden94",
     "AjZinter2000",
@@ -121,14 +132,6 @@ usernames = [
 ]
 
 future = [
-    "HasonLader",
-    "BrokerFe",
-    "IlseYanez",
-    "RabenoldLuz1996",
-    "DerayMcglew98",
-    "McqueenLachlan94",
-    "RaeginGuttormson",
-    "MacolaTanishq01",
     "IrieYarn",
     "TawfeeqMulder1989",
     "AyiraJacquay95",
@@ -1032,7 +1035,9 @@ with open(CWD + "/done.txt", "a+") as file:
 for username in usernames:
     try:
         mailru_password = config.get("configuration", username + "_password")
-        session = MailruAlive(mailru=username, mailru_password=mailru_password)
+        session = MailruAlive(
+            mailru=username, mailru_password=mailru_password, headless=True
+        )
         session.check_mail()
         successful.append(username)
         with open(CWD + "/done.txt", "a+") as file:
