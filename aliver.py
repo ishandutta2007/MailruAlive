@@ -84,9 +84,6 @@ captchawalas = [
     "DerayMcglew98",
     "McqueenLachlan94",
     "RaeginGuttormson",
-]
-
-usernames = [
     "MacolaTanishq01",
     "D8autrjleajmlbfrdct3w9owcjkwdj",
     "AzaGooden94",
@@ -131,7 +128,8 @@ usernames = [
     "LazuskyZaren1991",
 ]
 
-future = [
+
+usernames = [
     "IrieYarn",
     "TawfeeqMulder1989",
     "AyiraJacquay95",
@@ -180,6 +178,9 @@ future = [
     "ArmanieQuill93",
     "RomaBerti",
     "ToomerJoni",
+]
+
+future = [
     "O4vwzs5xc63sitbhs4",
     "YasseenHabina2001",
     "HeberGhaor",
@@ -1036,7 +1037,7 @@ for username in usernames:
     try:
         mailru_password = config.get("configuration", username + "_password")
         session = MailruAlive(
-            mailru=username, mailru_password=mailru_password, headless=True
+            mailru=username, mailru_password=mailru_password, headless=False
         )
         session.check_mail()
         successful.append(username)
