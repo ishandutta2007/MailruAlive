@@ -15,7 +15,8 @@ from selenium.webdriver.common.by import By
 
 from .time_util import sleep
 from .time_util import sleep_actual
-from .database_engine import get_database
+
+# from .database_engine import get_database
 from .settings import Settings
 
 from selenium.common.exceptions import WebDriverException

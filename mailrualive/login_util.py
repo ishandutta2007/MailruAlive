@@ -19,7 +19,8 @@ from socialcommons.browser import set_selenium_local_session
 from socialcommons.exceptions import SocialPyError
 from .settings import Settings
 import traceback
-from .database_engine import get_database
+
+# from .database_engine import get_database
 import configparser
 from .time_util import sleep
 from selenium.common.exceptions import NoSuchElementException

@@ -3,4 +3,5 @@ mailrualive/__pycache__
 *.log
 config.txt
 schedule_libs_insta.py
-
+client_secret_*
+token.pickle

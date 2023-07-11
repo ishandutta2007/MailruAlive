@@ -15,7 +15,8 @@ from socialcommons.browser import set_selenium_local_session
 from socialcommons.exceptions import SocialPyError
 from .settings import Settings
 import traceback
-from .database_engine import get_database
+
+# from .database_engine import get_database
 from pathlib import Path
 
 
@@ -27,13 +28,15 @@ class MailruAlive:
         headless=False,
         memory_hogging_processes=["Fire", "Chrome", "chromedriver", "DrCleaner"],
     ):
+        print("MailruAlive __init__", mailru, mailru_password)
         self.mailru = mailru
         self.mailru_password = mailru_password
         self.multi_logs = True
         self.logfolder = get_logfolder(self.mailru, self.multi_logs, Settings)
         self.get_mailrualive_logger()
-        for mhp in memory_hogging_processes:
-            check_kill_process(mhp, self.logger)
+        print("MailruAlive logfolder", self.logfolder)
+        # for mhp in memory_hogging_processes:
+        #     check_kill_process(mhp, self.logger)
         self.page_delay = 25
         self.use_firefox = headless
         self.headless_browser = headless
@@ -44,10 +47,11 @@ class MailruAlive:
         self.proxy_address = None
         Settings.profile["name"] = self.mailru
 
-        if not get_workspace(Settings):
-            raise SocialPyError("Oh no! I don't have a workspace to work at :'(")
+        # if not get_workspace(Settings):
+        #     raise SocialPyError("Oh no! I don't have a workspace to work at :'(")
 
-        get_database(Settings, make=True)
+        # get_database(Settings, make=True)
+        print("Settings for selenium", Settings)
         self.set_selenium_local_session(Settings)
 
     def get_mailrualive_logger(self):
